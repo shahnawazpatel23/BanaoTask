@@ -12,19 +12,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
-
 app.use('/api', alertRoutes);
 
-
-  
-
-// app.get('/api', getCachedPrices);
 app.get('/', getCachedPrices);
-
-
 connectDB();
 
-setInterval(fetchCryptoPrices, 20000); 
+setInterval(fetchCryptoPrices, 20000); //fetchcrypto func will get invoked each 20 seconds
 
 export default app;

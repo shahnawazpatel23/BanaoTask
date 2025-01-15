@@ -16,7 +16,7 @@ export const createAlert = async (req: Request, res: Response) => {
   }
 };
 
-const userEmail = '0201it211085@gmail.com'
+const userEmail = '0201it211085@gmail.com' // using my own secondary gmail account
 export const checkAlertsRealtime = async (prices: Record<string, { usd: number }>) => {
   try {
     const alerts = await Alert.find({ notified: false });
@@ -32,7 +32,7 @@ export const checkAlertsRealtime = async (prices: Record<string, { usd: number }
           currentPrice
         } USD`;
 
-        // Emit alert notification to the frontend
+        
         io.emit('alertTriggered', {
           
           message: `Alert triggered for ${alert.crypto}. Current price: $${currentPrice}`,
@@ -40,7 +40,7 @@ export const checkAlertsRealtime = async (prices: Record<string, { usd: number }
         });
 
         await sendEmail(
-          userEmail, // Replace with the actual user's email field
+          userEmail, 
           "Crypto Alert Triggered",
           message
         );

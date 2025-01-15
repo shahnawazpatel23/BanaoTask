@@ -3,9 +3,7 @@ import { createServer } from 'http';
 import { Request, Response } from 'express';
 import { Server } from 'socket.io';
 import app from './app';
-import { checkAlertsRealtime } from './controllers/alertController';
-import alertRoutes from './routes/alertRoutes'; 
-import { getCachedPrices } from './services/priceService';
+
 
 const PORT = process.env.PORT || 5000;
 
@@ -13,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 const server = createServer(app);
 export const io = new Server(server, {
   cors: {
-    origin: '*',
+    origin: '*', //allowing request from all origins though our frontend is on 5173 port
   },
 });
 
@@ -25,10 +23,6 @@ io.on('connection', (socket) => {
   });
 });
 
-
-
-// Pass io instance to real-time alert checker
-// checkAlertsRealtime(io);
 
 
 server.listen(PORT, () => {

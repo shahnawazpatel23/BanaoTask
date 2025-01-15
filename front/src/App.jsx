@@ -3,18 +3,18 @@ import { io, Socket } from "socket.io-client";
 import axios from "axios";
 
 
-const socket = io("http://localhost:5000"); // Update to your backend URL
+const socket = io("http://localhost:5000"); // backend URL
 
 const App = () => {
   const [cryptoPrices, setCryptoPrices] = useState();
-  const [alerts, setAlerts] = useState([]);
+  
   const [newAlert, setNewAlert] = useState({
     crypto: "",
     condition: "greater_than",
     value: 0,
   });
 
-  // Listen for real-time updates
+  // Listening for real-time updates
   useEffect(() => {
     socket.on("prices", (prices) => {
       console.log("Received price update:", prices);
@@ -43,7 +43,7 @@ const App = () => {
   const handleAlertSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/alerts", newAlert); // Update URL if needed
+      await axios.post("http://localhost:5000/api/alerts", newAlert); 
       alert("Alert created successfully!");
     } catch (error) {
       console.error("Error creating alert:", error);

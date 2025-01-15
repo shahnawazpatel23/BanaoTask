@@ -1,3 +1,4 @@
+//using redis for caching mechanism
 import Redis from 'ioredis';
 
 const redis = new Redis();
