@@ -11,7 +11,7 @@ export const fetchCryptoPrices = async () => {
     });
     io.emit('prices',JSON.stringify(data))
 
-    await redis.set('crypto_prices', JSON.stringify(data), 'EX', 24); // Cache for 24 seconds as the setInterval in app.ts is set at 20 seconds so this time must be >=20 seconds
+    await redis.set('crypto_prices', JSON.stringify(data), 'EX', 22); // Cache for 22 seconds as the setInterval in app.ts is set at 20 seconds so this time must be >=20 seconds
     await checkAlertsRealtime(data); //checking alerts
     console.log('Crypto prices updated in cache:', data);
     
